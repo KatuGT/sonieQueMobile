@@ -25,6 +25,25 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-updates",
+        {
+          "username": "katu93"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b8ec8436-8f1b-4e5c-bc7e-5c34c0d1accc"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/b8ec8436-8f1b-4e5c-bc7e-5c34c0d1accc"
     }
   }
 }
