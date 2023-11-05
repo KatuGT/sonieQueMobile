@@ -2,7 +2,8 @@ module.exports = function (api) {
   api.cache(true);
   return {
     presets: ["module:metro-react-native-babel-preset"],
-    plugins: ["nativewind/babel",
+    plugins: [
+      "nativewind/babel",
       [
         "module-resolver",
         {
@@ -14,6 +15,7 @@ module.exports = function (api) {
           },
         },
       ],
+      "react-native-reanimated/plugin",
     ],
   };
 };
