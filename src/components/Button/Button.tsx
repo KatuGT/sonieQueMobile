@@ -13,9 +13,20 @@ import { colors } from "utils/colors";
 interface ButtonProps {
   color: "primary" | "secondary" | "default" | "success" | "warning" | "danger";
   variant: "solid" | "shadow" | "bordereded" | "light";
+  text?: string;
+  startIcon?: any;
+  endIcon?: any;
+  onlyIcon?: boolean;
 }
 
-const Button = ({ color, variant }: ButtonProps) => {
+const Button = ({
+  color,
+  variant,
+  endIcon,
+  startIcon,
+  text,
+  onlyIcon,
+}: ButtonProps) => {
   const [btnVariant, setBtnVariant] = useState({
     bgColor: "",
     textColor: "",
@@ -27,19 +38,19 @@ const Button = ({ color, variant }: ButtonProps) => {
     setBtnVariant(styles || { bgColor: "", textColor: "", bordered: "" });
   }, [color, variant]);
 
-  const textRef = useRef<Text>(null);
+  const pressableRef = useRef<Text>(null);
   const [textWidth, setTextWidth] = useState(0);
 
   useEffect(() => {
-    if (textRef.current) {
-      textRef.current.measure((fx, fy, width, height, px, py) => {
+    if (pressableRef.current) {
+      pressableRef.current.measure((fx, fy, width, height, px, py) => {
         setTextWidth(width);
       });
     }
   }, []);
 
   return (
-    <View className="relative ">
+    <View className="relative">
       {variant === "shadow" && (
         <Canvas
           style={{
@@ -50,10 +61,7 @@ const Button = ({ color, variant }: ButtonProps) => {
             left: "-8%",
           }}
         >
-          <Group
-            //   transform={fitbox("contain", src, dst)}
-            layer={<Blur blur={15} />}
-          >
+          <Group layer={<Blur blur={15} />}>
             <Rect
               x={30}
               y={20}
@@ -71,14 +79,33 @@ const Button = ({ color, variant }: ButtonProps) => {
           borderless: false,
           foreground: true,
         }}
-        className={`overflow-hidden  ${btnVariant.bordered} relative  rounded-xl `}
+        ref={pressableRef}
+        className={`overflow-hidden ${
+          btnVariant.bordered
+        } relative  rounded-xl ${
+          btnVariant.bgColor
+        } flex justify-center items-center flex-row  ${
+          !onlyIcon && "gap-x-1"
+        }  ${onlyIcon && "h-10 w-10"}`}
       >
-        <Text
-          ref={textRef}
-          className={`px-5 py-2.5 ${btnVariant.textColor} ${btnVariant.bgColor} font-medium text-lg #a9a9a9`}
-        >
-          button
-        </Text>
+        {startIcon && <Text style={{ color: colors[color] }}>{startIcon}</Text>}
+        {text && (
+          <Text
+            className={`${!onlyIcon && "py-2.5"} ${
+              btnVariant.textColor
+            } font-medium text-lg #a9a9a9 ${!endIcon && "pr-2.5"}`}
+          >
+            {text}
+          </Text>
+        )}
+        {endIcon && (
+          <Text
+            style={{ color: colors[color] }}
+            className={`${!onlyIcon && "pr-1.5"}`}
+          >
+            {endIcon}
+          </Text>
+        )}
       </Pressable>
     </View>
   );
