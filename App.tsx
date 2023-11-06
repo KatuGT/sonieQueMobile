@@ -2,31 +2,32 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import * as Updates from "expo-updates";
 import { useEffect } from "react";
+import { Button } from "components/Button";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
+  // useEffect(() => {
+  //   onFetchUpdateAsync();
+  // }, []);
 
-  useEffect(() => {
-    onFetchUpdateAsync();
-  }, []);
+  // async function onFetchUpdateAsync() {
+  //   try {
+  //     const update = await Updates.checkForUpdateAsync();
 
-  async function onFetchUpdateAsync() {
-    try {
-      const update = await Updates.checkForUpdateAsync();
-
-      if (update.isAvailable) {
-        await Updates.fetchUpdateAsync();
-        await Updates.reloadAsync();
-      }
-    } catch (error) {
-      alert(`Error fetching latest Expo update: ${error}`);
-    }
-  }
+  //     if (update.isAvailable) {
+  //       await Updates.fetchUpdateAsync();
+  //       await Updates.reloadAsync();
+  //     }
+  //   } catch (error) {
+  //     alert(`Error fetching latest Expo update: ${error}`);
+  //   }
+  // }
 
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
