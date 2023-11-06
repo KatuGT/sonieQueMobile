@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as Updates from "expo-updates";
 import { useEffect } from "react";
 import { Button } from "components/Button";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Entypo } from "@expo/vector-icons";
 
 export default function App() {
   // useEffect(() => {
@@ -24,10 +24,16 @@ export default function App() {
   // }
 
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
-    </GestureHandlerRootView>
+      <Button
+        color="success"
+        variant="bordereded"
+        startIcon={<Entypo name="arrow-down" size={24} />}
+        onlyIcon={true}
+      />
+    </View>
   );
 }
 
