@@ -2,8 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import * as Updates from "expo-updates";
 import { useEffect } from "react";
-import { Button } from "components/Button";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { LinearGradient } from 'expo-linear-gradient';
+import SuenioCard from "components/Button/SuenioCard";
 
 export default function App() {
   // useEffect(() => {
@@ -24,10 +24,12 @@ export default function App() {
   // }
 
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </GestureHandlerRootView>
+    <LinearGradient
+    colors={["#03001A", "#01002E"]}
+    style={styles.container}>
+       <StatusBar style="light" />
+       <SuenioCard/>
+    </LinearGradient>
   );
 }
 
@@ -37,5 +39,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    paddingHorizontal: 20
   },
 });
