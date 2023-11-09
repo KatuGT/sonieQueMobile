@@ -28,16 +28,6 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
-      <Button
-        color="success"
-        variant="bordereded"
-        startIcon={<Entypo name="arrow-down" size={24} />}
-        onlyIcon={true}
-      />
-      <Chip color="danger" text="fdsff " variant="solid"/>
-      <Chip color="danger" text="dfserfgdfg34" variant="light"/>
-      <Chip color="danger" text="ddd44444" variant="bordereded"/>
-
     </View>
   );
 }
