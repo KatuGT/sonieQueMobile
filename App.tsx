@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as Updates from "expo-updates";
 import { useEffect } from "react";
 import { LinearGradient } from 'expo-linear-gradient';
-import SuenioCard from "components/Button/SuenioCard";
+import SuenioCard from "components/SuenioCard";
 
 export default function App() {
   // useEffect(() => {
@@ -25,10 +25,10 @@ export default function App() {
 
   return (
     <LinearGradient
-    colors={["#03001A", "#01002E"]}
-    style={styles.container}>
-       <StatusBar style="light" />
-       <SuenioCard/>
+      colors={["#03001A", "#01002E"]}
+      style={styles.container}>
+      <StatusBar style="light" />
+      <SuenioCard />
     </LinearGradient>
   );
 }
