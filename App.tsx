@@ -4,6 +4,7 @@ import * as Updates from "expo-updates";
 import { useEffect } from "react";
 import { Button } from "components/Button";
 import { Entypo } from "@expo/vector-icons";
+import { Chip } from "components/Chip";
 
 export default function App() {
   // useEffect(() => {
@@ -33,6 +34,10 @@ export default function App() {
         startIcon={<Entypo name="arrow-down" size={24} />}
         onlyIcon={true}
       />
+      <Chip color="danger" text="fdsff " variant="solid"/>
+      <Chip color="danger" text="dfserfgdfg34" variant="light"/>
+      <Chip color="danger" text="ddd44444" variant="bordereded"/>
+
     </View>
   );
 }
