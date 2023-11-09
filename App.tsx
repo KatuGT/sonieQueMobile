@@ -4,6 +4,7 @@ import * as Updates from "expo-updates";
 import { useEffect } from "react";
 import { Button } from "components/Button";
 import { Entypo } from "@expo/vector-icons";
+import { Chip } from "components/Chip";
 
 export default function App() {
   // useEffect(() => {
@@ -27,12 +28,6 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
-      <Button
-        color="success"
-        variant="bordereded"
-        startIcon={<Entypo name="arrow-down" size={24} />}
-        onlyIcon={true}
-      />
     </View>
   );
 }

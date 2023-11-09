@@ -80,28 +80,24 @@ const Button = ({
           foreground: true,
         }}
         ref={pressableRef}
-        className={`overflow-hidden ${
-          btnVariant.bordered
-        } relative  rounded-xl ${
-          btnVariant.bgColor
-        } flex justify-center items-center flex-row  ${
-          !onlyIcon && "gap-x-1"
-        }  ${onlyIcon && "h-10 w-10"}`}
+        className={`overflow-hidden ${btnVariant.bordered
+          } relative  rounded-xl ${btnVariant.bgColor
+          } flex justify-center items-center flex-row  ${!onlyIcon && "gap-x-1"
+          }  ${onlyIcon && "h-10 w-10"}`}
       >
-        {startIcon && <Text style={{ color: colors[color] }}>{startIcon}</Text>}
+        {startIcon && <Text className={`${btnVariant.textColor}`}
+        >{startIcon}</Text>}
         {text && (
           <Text
-            className={`${!onlyIcon && "py-2.5"} ${
-              btnVariant.textColor
-            } font-medium text-lg #a9a9a9 ${!endIcon && "pr-2.5"}`}
+            className={`${!onlyIcon && "py-2.5"} ${btnVariant.textColor
+              } font-medium text-lg #a9a9a9 ${!endIcon && "pr-2.5"}`}
           >
             {text}
           </Text>
         )}
         {endIcon && (
           <Text
-            style={{ color: colors[color] }}
-            className={`${!onlyIcon && "pr-1.5"}`}
+            className={`${!onlyIcon && "pr-1.5"} ${btnVariant.textColor}`}
           >
             {endIcon}
           </Text>
