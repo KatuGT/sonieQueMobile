@@ -2,9 +2,8 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import * as Updates from "expo-updates";
 import { useEffect } from "react";
-import { Button } from "components/Button";
-import { Entypo } from "@expo/vector-icons";
-import { Chip } from "components/Chip";
+import { LinearGradient } from 'expo-linear-gradient';
+import SuenioCard from "components/SuenioCard";
 
 export default function App() {
   // useEffect(() => {
@@ -25,10 +24,11 @@ export default function App() {
   // }
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <LinearGradient
+      colors={["#03001A", "#01002E"]}
+      style={styles.container}>
+      <StatusBar style="light" />
+    </LinearGradient>
   );
 }
 

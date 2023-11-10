@@ -6,7 +6,7 @@ import {
   Group,
 } from "@shopify/react-native-skia";
 import { useEffect, useRef, useState } from "react";
-import { Text, Pressable, View } from "react-native";
+import { Text, Pressable, View, TouchableHighlight } from "react-native";
 import { btnVariantStyles } from "utils/btnVariantStyles";
 import { colors } from "utils/colors";
 
@@ -17,6 +17,7 @@ interface ButtonProps {
   startIcon?: any;
   endIcon?: any;
   onlyIcon?: boolean;
+  onPress?: () => void;
 }
 
 const Button = ({
@@ -26,6 +27,7 @@ const Button = ({
   startIcon,
   text,
   onlyIcon,
+  onPress
 }: ButtonProps) => {
   const [btnVariant, setBtnVariant] = useState({
     bgColor: "",
@@ -50,60 +52,62 @@ const Button = ({
   }, []);
 
   return (
-    <View className="relative">
-      {variant === "shadow" && (
-        <Canvas
-          style={{
-            width: textWidth + textWidth,
-            height: "200%",
-            position: "absolute",
-            top: 9,
-            left: "-8%",
+    <TouchableHighlight className="relative" onPress={onPress}>
+      <View>
+        {variant === "shadow" && (
+          <Canvas
+            style={{
+              width: textWidth + textWidth,
+              height: "200%",
+              position: "absolute",
+              top: 9,
+              left: "-8%",
+            }}
+          >
+            <Group layer={<Blur blur={15} />}>
+              <Rect
+                x={30}
+                y={20}
+                width={textWidth + 5}
+                height={25}
+                color={colors[color]}
+              ></Rect>
+            </Group>
+          </Canvas>
+        )}
+        <Pressable
+          android_ripple={{
+            color:
+              btnVariant.bgColor === "bg-transparent" ? colors[color] : "white",
+            borderless: false,
+            foreground: true,
           }}
+          ref={pressableRef}
+          className={`overflow-hidden ${btnVariant.bordered
+            } relative  rounded-xl ${btnVariant.bgColor
+            } flex justify-center items-center flex-row  ${!onlyIcon && "gap-x-1"
+            }  ${onlyIcon && "h-10 w-10"}`}
         >
-          <Group layer={<Blur blur={15} />}>
-            <Rect
-              x={30}
-              y={20}
-              width={textWidth + 5}
-              height={25}
-              color={colors[color]}
-            ></Rect>
-          </Group>
-        </Canvas>
-      )}
-      <Pressable
-        android_ripple={{
-          color:
-            btnVariant.bgColor === "bg-transparent" ? colors[color] : "white",
-          borderless: false,
-          foreground: true,
-        }}
-        ref={pressableRef}
-        className={`overflow-hidden ${btnVariant.bordered
-          } relative  rounded-xl ${btnVariant.bgColor
-          } flex justify-center items-center flex-row  ${!onlyIcon && "gap-x-1"
-          }  ${onlyIcon && "h-10 w-10"}`}
-      >
-        {startIcon && <Text className={`${btnVariant.textColor}`}
-        >{startIcon}</Text>}
-        {text && (
-          <Text
-            className={`${!onlyIcon && "py-2.5"} ${btnVariant.textColor
-              } font-medium text-lg #a9a9a9 ${!endIcon && "pr-2.5"}`}
-          >
-            {text}
-          </Text>
-        )}
-        {endIcon && (
-          <Text
-            className={`${!onlyIcon && "pr-1.5"} ${btnVariant.textColor}`}
-          >
-            {endIcon}
-          </Text>
-        )}
-      </Pressable>
-    </View>
+          {startIcon && <Text className={`${btnVariant.textColor}`}
+          >{startIcon}</Text>}
+          {text && (
+            <Text
+              className={`${!onlyIcon && "py-2.5"} ${btnVariant.textColor
+                } font-medium text-lg #a9a9a9 ${!endIcon && "pr-2.5"}`}
+            >
+              {text}
+            </Text>
+          )}
+          {endIcon && (
+            <Text
+              className={`${!onlyIcon && "pr-1.5"} ${btnVariant.textColor}`}
+            >
+              {endIcon}
+            </Text>
+          )}
+        </Pressable>
+      </View>
+    </TouchableHighlight>
   );
 };
 
