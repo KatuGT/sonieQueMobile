@@ -3,16 +3,22 @@ import React, { useState } from "react";
 import Button from "./Button/Button";
 import { Entypo, MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { Chip } from "./Chip";
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { StackParams } from "types/navigationTypes";
+
 
 const SuenioCard = () => {
   const [like, setLike] = useState<'like' | 'dislike' | 'none'>()
   const [numberOfDreamLines, setNumberOfDreamLines] = useState(0)
   const [maxNumberOfLines, setMaxNumberOfLines] = useState(6)
 
+  const navigation = useNavigation<StackNavigationProp<StackParams, 'SuenioDetalle'>>()
+
   return (
     <View className=" w-full">
       <View className="bg-[#4e4d65] p-3 flex-row justify-between items-center">
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('SuenioDetalle')}>
           <View
             className=" flex-row justify-center items-center"
             style={{ columnGap: 5 }}
