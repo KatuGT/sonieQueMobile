@@ -28,7 +28,6 @@ export default function App() {
       colors={["#03001A", "#01002E"]}
       style={styles.container}>
       <StatusBar style="light" />
-      <SuenioCard />
     </LinearGradient>
   );
 }
