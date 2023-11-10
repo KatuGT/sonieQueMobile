@@ -75,7 +75,7 @@ const SuenioCard = () => {
         <Chip color="danger" text="Caí" variant="solid" />
         <Chip color="default" text="me perseguian" variant="solid" />
         <Chip color="primary" text="hacia pís" variant="solid" />
-        <Chip color="success" text="volava" variant="solid" />
+        <Chip color="success" text="volaba" variant="solid" />
         <Chip color="warning" text="alguien moría" variant="solid" />
       </View>
     </View>
