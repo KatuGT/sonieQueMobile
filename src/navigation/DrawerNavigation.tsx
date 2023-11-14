@@ -2,12 +2,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import StackNavigation from './StackNavigation';
 import Profile from 'screens/Profile';
 import Terminos from 'screens/Terminos';
+import { Text } from 'react-native';
+import CustomDrawer from 'components/CustomDrawer';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
     return (
-        <Drawer.Navigator>
+        <Drawer.Navigator drawerContent={props => <CustomDrawer {...props}/>}>
             <Drawer.Screen name="Home" component={StackNavigation} />
             <Drawer.Screen name="Perfil" component={Profile} />
             <Drawer.Screen name="Terminos" component={Terminos} />

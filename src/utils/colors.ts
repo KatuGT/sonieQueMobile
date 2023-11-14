@@ -5,4 +5,6 @@ export const colors = {
   success: "#18C964",
   warning: "#F5A524",
   danger: "#F31260",
+  superDarkBlue: "#03001A",
+  darkBlue: "#01002E",
 };
