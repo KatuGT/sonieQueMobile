@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { LinearGradient } from 'expo-linear-gradient';
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from "navigation/DrawerNavigation";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   // useEffect(() => {
@@ -25,11 +26,12 @@ export default function App() {
   // }
 
   return (
-    <NavigationContainer>
-
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer >
         <StatusBar style="light" />
-        <DrawerNavigation/>
-    </NavigationContainer>
+        <DrawerNavigation />
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 

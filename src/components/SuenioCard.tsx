@@ -6,6 +6,7 @@ import { Chip } from "./Chip";
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { StackParams } from "types/navigationTypes";
+import UserMini from "./UserMini";
 
 
 const SuenioCard = () => {
@@ -16,11 +17,11 @@ const SuenioCard = () => {
   const navigation = useNavigation<StackNavigationProp<StackParams, 'SuenioDetalle'>>()
 
   return (
-    <View className=" w-full">
+    <View className="w-full">
       <View className="bg-[#4e4d65] p-3 flex-row justify-between items-center">
         <TouchableOpacity onPress={() => navigation.navigate('SuenioDetalle')}>
           <View
-            className=" flex-row justify-center items-center"
+            className="flex-row justify-center items-center"
             style={{ columnGap: 5 }}
           >
             <Text className="text-white text-base">#dfgfdg</Text>
@@ -55,27 +56,21 @@ const SuenioCard = () => {
         </View>
       </View>
       <View className="p-3">
-        <View className="flex-row items-center" style={{ columnGap: 8 }}>
-          <View className="h-12 w-12 rounded-full overflow-hidden">
-            <Image source={{ uri: "https://i.pravatar.cc/150?u=a04258114e29026702d" }} className="h-full" />
-          </View>
-          <View>
-            <Text className="text-white">KatuDev</Text>
-            <Text className="text-gray-500 text-xs">Hace 2 horas</Text>
-          </View>
+        <UserMini />
+        <View>
+          <Text className=" text-white text-lg" numberOfLines={maxNumberOfLines} onTextLayout={(e) => setNumberOfDreamLines(e.nativeEvent.lines.length)}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Exercitationem, officiis consequuntur mollitia quam quisquam minima
+            laborum modi incidunt voluptatem voluptate ab ut suscipit temporibus
+            amet odit eum cumque nobis? Amet? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, vitae adipisci, molestiae inventore quibusdam voluptatem quasi excepturi explicabo corrupti quos ad. Quod architecto quidem totam commodi minima nulla laudantium et.
+          </Text>
+          {numberOfDreamLines > maxNumberOfLines &&
+            <TouchableOpacity onPress={() => setMaxNumberOfLines(prev => prev + 5)} className="items-center">
+              <Text className="mx-auto text-white mt-2">Ver mas</Text>
+              <Ionicons name="md-chevron-down-outline" size={24} color="white" />
+            </TouchableOpacity>
+          }
         </View>
-        <Text className=" text-white text-lg" numberOfLines={maxNumberOfLines} onTextLayout={(e) => setNumberOfDreamLines(e.nativeEvent.lines.length)}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Exercitationem, officiis consequuntur mollitia quam quisquam minima
-          laborum modi incidunt voluptatem voluptate ab ut suscipit temporibus
-          amet odit eum cumque nobis? Amet? Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, vitae adipisci, molestiae inventore quibusdam voluptatem quasi excepturi explicabo corrupti quos ad. Quod architecto quidem totam commodi minima nulla laudantium et.
-        </Text>
-        {numberOfDreamLines > maxNumberOfLines &&
-          <TouchableOpacity onPress={() => setMaxNumberOfLines(prev => prev + 5)} className="items-center">
-            <Text className="mx-auto text-white mt-2">Ver mas</Text>
-            <Ionicons name="md-chevron-down-outline" size={24} color="white" />
-          </TouchableOpacity>
-        }
       </View>
       <View className="bg-[#4e4d65] p-3 flex flex-row flex-wrap" style={{ columnGap: 5, rowGap: 5 }}>
         <Chip color="danger" text="Caí" variant="solid" />
