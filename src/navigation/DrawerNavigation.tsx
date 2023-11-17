@@ -5,7 +5,8 @@ import Terminos from "screens/Terminos";
 import CustomDrawer from "components/CustomDrawer";
 import { colors } from "utils/colors";
 import { AntDesign, MaterialIcons, FontAwesome } from "@expo/vector-icons";
-import Person3Icon from "./Person3Icon ";
+import Person3Icon from "../../assets/SVGIcons/Person3Icon ";
+import TabNavigation from "./TabNavigation";
 
 const Drawer = createDrawerNavigator();
 
@@ -33,7 +34,7 @@ const DrawerNavigation = () => {
                         <MaterialIcons name="home" size={24} color={focused ? colors.warning : colors.default} />),
                 }}
             />
-            <Drawer.Screen name="Perfil" component={Profile}
+            <Drawer.Screen name="Perfil" component={TabNavigation}
                 options={{
                     drawerIcon: ({ focused }) => (
                         <Person3Icon color={focused ? colors.warning : colors.default} />),
