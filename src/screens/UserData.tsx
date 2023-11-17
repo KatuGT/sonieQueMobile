@@ -44,12 +44,6 @@ const UserData = () => {
         <Button color='default' variant='bordereded' text='Cerrar sesión' startIcon={<FontAwesome5 name="door-open" size={24} />} />
       </View>
 
-
-      <TouchableHighlight
-        onPress={() => setModalVisible(prev => !prev)}
-      >
-        <Text className='text-white'>Show Modal</Text>
-      </TouchableHighlight>
       <ModalEditUser modalVisible={modalVisible} setModalVisible={setModalVisible} />
     </LinearGradient>
   )
