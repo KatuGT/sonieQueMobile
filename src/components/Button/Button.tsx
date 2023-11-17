@@ -52,7 +52,7 @@ const Button = ({
   }, []);
 
   return (
-    <TouchableHighlight className="relative" onPress={onPress}>
+    <View className="relative">
       <View>
         {variant === "shadow" && (
           <Canvas
@@ -76,6 +76,7 @@ const Button = ({
           </Canvas>
         )}
         <Pressable
+          onPress={onPress}
           android_ripple={{
             color:
               btnVariant.bgColor === "bg-transparent" ? colors[color] : "white",
@@ -85,15 +86,15 @@ const Button = ({
           ref={pressableRef}
           className={`overflow-hidden ${btnVariant.bordered
             } relative  rounded-xl ${btnVariant.bgColor
-            } flex justify-center items-center flex-row  ${!onlyIcon && "gap-x-1"
+            } flex justify-center items-center flex-row  ${!onlyIcon && "gap-x-1 pl-4"
             }  ${onlyIcon && "h-10 w-10"}`}
         >
           {startIcon && <Text className={`${btnVariant.textColor}`}
           >{startIcon}</Text>}
           {text && (
             <Text
-              className={`${!onlyIcon && "py-2.5"} ${btnVariant.textColor
-                } font-medium text-lg #a9a9a9 ${!endIcon && "pr-2.5"}`}
+              className={`${!onlyIcon && "py-1"} ${btnVariant.textColor
+                } font-medium text-lg #a9a9a9 ${!endIcon && "pr-5"}`}
             >
               {text}
             </Text>
@@ -107,7 +108,7 @@ const Button = ({
           )}
         </Pressable>
       </View>
-    </TouchableHighlight>
+    </View>
   );
 };
 
