@@ -1,14 +1,41 @@
-import { View, Text, Modal, Pressable, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, Modal, Pressable, Image, TextInput, TouchableOpacity, ScrollView, TouchableHighlight } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Button } from './Button';
 import { MaterialCommunityIcons, Entypo, Octicons } from '@expo/vector-icons';
 import { colors } from 'utils/colors';
+import * as ImagePicker from 'expo-image-picker';
 
 const ModalEditUser = ({ modalVisible, setModalVisible }) => {
 
     const [isFocused, setIsFocused] = useState(false)
     const [borderColor, setBorderColor] = useState('border-default')
 
+    const [image, setImage] = useState(null);
+
+    const pickImage = async (useLibrary: boolean) => {
+        let result: ImagePicker.ImagePickerResult;
+
+        const options: ImagePicker.ImagePickerOptions = {
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [1, 1],
+            quality: 0.5,
+            selectionLimit: 1,
+            base64: true,
+        };
+
+        if (useLibrary) {
+            result = await ImagePicker.launchImageLibraryAsync(options);
+        } else {
+            await ImagePicker.requestCameraPermissionsAsync();
+
+            result = await ImagePicker.launchCameraAsync(options);
+        }
+
+        if (!result.canceled) {
+            setImage(result.assets[0].uri);
+        }
+    };
 
 
     return (
@@ -24,7 +51,7 @@ const ModalEditUser = ({ modalVisible, setModalVisible }) => {
             <ScrollView className='bg-darkBlue flex-1 p-3'>
                 <View style={{ rowGap: 10 }} className='justify-center items-center'>
                     <View className={`h-32 w-32 rounded-lg overflow-hidden border-2 ${borderColor} border-solid`}>
-                        <Image source={{ uri: "https://i.pravatar.cc/150?u=a04258114e29026702d" }} resizeMode='cover' className='h-full' />
+                        <Image source={{ uri: image ? image : "https://i.pravatar.cc/150?u=a04258114e29026702d" }} resizeMode='cover' className='h-full' />
                     </View>
                     <Text className='text-white'>Cambia el color del borde</Text>
                     <View className='flex-row mb-5' style={{ columnGap: 5 }}>
@@ -52,9 +79,9 @@ const ModalEditUser = ({ modalVisible, setModalVisible }) => {
                     </View>
                 </View>
                 <View className='items-start justify-start' style={{ rowGap: 10 }}>
-                    <Button color='primary' variant='light' text='Tomá una foto' startIcon={<MaterialCommunityIcons name="camera" size={24} />} />
+                    <Button color='primary' variant='light' text='Tomá una foto' startIcon={<MaterialCommunityIcons name="camera" size={24} />} onPress={() => pickImage(false)} />
                     <Button color='secondary' variant='light' text='Elegí una de tu galería' startIcon={<Entypo name="images" size={24} />
-                    } />
+                    } onPress={() => pickImage(true)} />
                     <Button color='success' variant='light' text='Elegí uno de nuestro avatares' startIcon={<MaterialCommunityIcons name="cursor-pointer" size={24} />} />
                 </View>
                 <View className='h-[1px] bg-slate-500 w-full my-2'></View>
